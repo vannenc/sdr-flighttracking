@@ -26,3 +26,18 @@ services:
     depends_on:
       - dump1090-fa
     restart: unless-stopped
+  adsbexchange:
+    image: ghcr.io/sdr-enthusiasts/docker-adsbexchange:latest
+    tty: true
+    container_name: adsbx
+    restart: always
+    env_file: adsbexchange.env
+    environment:
+      - BEASTHOST=dump1090
+    links:
+      - dump1090-fa:dump1090
+    tmpfs:
+      - /run:rw,nosuid,nodev,exec,relatime,size=64M,uid=1000,gid=1000
+    depends_on:
+      - dump1090-fa
+    restart: unless-stopped
