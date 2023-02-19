@@ -1,7 +1,7 @@
 version: "3"
 services:
   dump1090-fa:
-    image: imple/dump1090-fa
+    image: vannen/dump1090-fa
     ports:
       - "8080:8080"
     privileged: True
