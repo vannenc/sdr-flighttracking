@@ -9,7 +9,7 @@ services:
     tmpfs:
       - /run:size=16M
   flightaware:
-    image: imple/flightaware
+    image: vannen/flightaware
     env_file: flightaware.env
     links:
       - dump1090-fa:dump1090
