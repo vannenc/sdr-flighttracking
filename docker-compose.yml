@@ -17,7 +17,7 @@ services:
       - dump1090-fa
     restart: unless-stopped
   flightradar24:
-    image: imple/flightradar24
+    image: vannen/flightradar24
     ports:
       - "8754:8754"
     env_file: flightradar24.env
