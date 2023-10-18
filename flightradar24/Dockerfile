@@ -6,9 +6,11 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get install -y gpg iputils-ping \
   ca-certificates apt-utils openssl
 
 # Add Flightradar24 keys
-RUN gpg --keyserver "keyserver.ubuntu.com" -vv --recv-keys "40C430F5" && \
-  gpg --armor --export 40C430F5 | apt-key add - && \
-  echo "deb http://repo.feed.flightradar24.com flightradar24 raspberrypi-stable" > /etc/apt/sources.list.d/flightradar24.list
+RUN KEY_ID=C969F07840C430F5 && apt-key adv --recv-key --keyserver keyserver.ubuntu.com ${KEY_ID} || \
+apt-key adv --recv-key --keyserver pool.sks-keyservers.net ${KEY_ID} || \
+apt-key adv --recv-key --keyserver pgp.mit.edu ${KEY_ID} && \
+echo 'deb http://repo.feed.flightradar24.com flightradar24 raspberrypi-stable' >> /etc/apt/sources.list
+
 
 # Create dummy systemctl, so install of fr24feed will not fail
 RUN echo '#!/bin/sh' > /bin/systemctl && chmod 755 /bin/systemctl
