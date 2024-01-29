@@ -1,4 +1,4 @@
-FROM arm32v7/debian:buster
+FROM arm32v7/debian:bookworm-slim
 
 # Update apt cache and install prerequisites
 RUN apt-get update

@@ -1,7 +1,7 @@
-FROM arm32v7/debian:buster
+FROM arm32v7/debian:bookworm-slim
 
 # Add FlightAware repository and update apt cache
-ADD https://de.flightaware.com/adsb/piaware/files/packages/pool/piaware/p/piaware-support/piaware-repository_6.0_all.deb /tmp/piaware-repository.deb
+ADD https://www.flightaware.com/adsb/piaware/files/packages/pool/piaware/f/flightaware-apt-repository/flightaware-apt-repository_1.2_all.deb /tmp/piaware-repository.deb
 RUN dpkg -i /tmp/piaware-repository.deb
 RUN apt-get update
 
